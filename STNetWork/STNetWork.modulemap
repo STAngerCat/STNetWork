@@ -1,0 +1,6 @@
+framework module STNetWork {
+  umbrella header "STNetWork.h"
+
+  export *
+  module * { export * }
+}
