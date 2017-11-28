@@ -15,7 +15,7 @@ import STNetWork.STNetWorkDefined
 
 public class AlamofireWrapper : NSObject {
     
-    weak public var delegate:AlamofireWrapperDelegate?
+    public var delegate:AlamofireWrapperDelegate?
     
     weak var request:STNRequest?;
     
@@ -24,6 +24,7 @@ public class AlamofireWrapper : NSObject {
     required public init(request: STNRequest) {
         super.init()
         self.request = request
+        self.delegate = (request as! AlamofireWrapperDelegate)
     }
 
     

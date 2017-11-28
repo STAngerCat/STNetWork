@@ -19,6 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly, nullable) NSData *HTTPBody;
 
 
++ (nullable STNHeaders *)globelHeaders;
++ (void)setupGlobelHeaders:(STNHeaders *)HTTPHeaders;
++ (void)setupGlobelHeadersValue:(id)value key:(NSString *)key;
+
+
 #pragma mark - HEAD
 
 + (instancetype)head:(NSString *)urlString
@@ -37,7 +42,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)post:(NSString *)urlString
               params:(nullable NSDictionary *)params
        completeBlock:(nullable STNRequestComplete)complete;
-
 
 - (instancetype)initWithRequest:(NSURLRequest *)request;
 
