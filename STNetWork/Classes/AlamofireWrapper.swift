@@ -6,7 +6,7 @@
 //
 
 import Alamofire
-import STNetWork.STNetWorkDefined
+import STNetWork
 
 
 @objc public protocol AlamofireWrapperDelegate : class {
@@ -46,7 +46,7 @@ public class AlamofireWrapper : NSObject {
 
 extension AlamofireWrapper {
     func responseConvert(_ response:DefaultDataResponse) -> STNResponse {
-        let customResponse = STNMutableResponse();
-        return customResponse.copy() as! STNResponse
+        let customResponse = STNResponse()
+        return customResponse
     }
 }

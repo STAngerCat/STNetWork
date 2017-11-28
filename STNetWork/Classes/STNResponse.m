@@ -6,7 +6,7 @@
 //
 
 #import "STNResponse.h"
-
+#import "STNResponse+Private.h"
 
 @implementation STNResponse
 

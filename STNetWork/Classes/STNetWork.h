@@ -12,9 +12,9 @@
 
 #import "STNetWork.h"
 #import "STNetWorkDefined.h"
-#import "STNMutableRequest.h"
-#import "STNMutableResponse.h"
+#import "STNRequest+Private.h"
 #import "STNRequest.h"
+#import "STNResponse+Private.h"
 #import "STNResponse.h"
 #import "STNResult.h"
 

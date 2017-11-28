@@ -6,24 +6,9 @@
 //
 
 #import "STNRequest.h"
-#import <STNetWork/STNetWork-Swift.h>
+#import "STNRequest+Private.h"
 
 NSMutableDictionary *globleHTTPHeaders;
-
-@interface STNRequest()<AlamofireWrapperDelegate>
-
-// public
-@property (nonatomic, strong) NSURLRequest *urlRequest;
-@property (nonatomic, assign) STNRequestMethod method;
-@property (nonatomic, strong) STNHeaders *headers;
-@property (nonatomic, assign) NSTimeInterval timeout;
-@property (nonatomic, strong) id data;
-
-// private
-@property (nonatomic, strong) AlamofireWrapper *wrapper;
-@property (nonatomic, strong) STNRequestComplete completeBlock;
-
-@end
 
 @implementation STNRequest
 

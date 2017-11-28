@@ -1,15 +1,13 @@
 //
-//  STNMutableResponse.h
-//  STNetWork
+//  STNResponse+Private.h
+//  Alamofire
 //
-//  Created by Mapleiny on 2017/11/26.
+//  Created by Maple Yin on 2017/11/28.
 //
 
-#import "STNResponse.h"
+#import <STNetWork/STNetWork.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
-@interface STNMutableResponse : STNResponse
+@interface STNResponse ()
 
 @property (nonatomic, assign) NSInteger code;
 @property (nonatomic, strong) STNRequest *request;
@@ -17,5 +15,3 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, nullable) NSError *error;
 
 @end
-
-NS_ASSUME_NONNULL_END
