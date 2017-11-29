@@ -6,9 +6,24 @@
 //
 
 #import "STNRequest.h"
-#import "STNRequest+Private.h"
+#import <STNetWork/STNetWork-Swift.h>
 
 NSMutableDictionary *globleHTTPHeaders;
+
+@interface STNRequest()<AlamofireWrapperDelegate>
+
+// public
+@property (nonatomic, strong) NSURLRequest *urlRequest;
+@property (nonatomic, assign) STNRequestMethod method;
+@property (nonatomic, strong) STNHeaders *headers;
+@property (nonatomic, assign) NSTimeInterval timeout;
+@property (nonatomic, strong) id data;
+
+// private
+@property (nonatomic, strong) AlamofireWrapper *wrapper;
+@property (nonatomic, copy) STNRequestComplete completeBlock;
+
+@end
 
 @implementation STNRequest
 
@@ -96,6 +111,10 @@ NSMutableDictionary *globleHTTPHeaders;
         _wrapper = [[AlamofireWrapper alloc] initWithRequest:self];
     }
     return self;
+}
+
+- (void)dealloc {
+    NSLog(@"~~");
 }
 
 - (void)start {

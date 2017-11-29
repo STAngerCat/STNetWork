@@ -19,6 +19,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly, nullable) STNResult *result;
 @property (nonatomic, strong, readonly, nullable) NSError *error;
 
+
+- (instancetype)initWithRequest:(STNRequest *)request
+                       response:(nullable NSHTTPURLResponse *)response
+                           data:(nullable NSData *)data
+                          error:(nullable NSError *)error;
+
 @end
 
 NS_ASSUME_NONNULL_END

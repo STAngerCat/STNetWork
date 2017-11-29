@@ -21,8 +21,9 @@
     [super viewDidLoad];
     
     STNRequest *res = [STNRequest get:@"http://api.sms.maple.im/" params:nil completeBlock:^(STNResponse *response) {
-        
+        NSLog(@"%@",response.result.rawString);
     }];
+    [res cancel];
     
 	// Do any additional setup after loading the view, typically from a nib.
 }

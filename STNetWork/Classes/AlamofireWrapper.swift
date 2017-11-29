@@ -6,7 +6,6 @@
 //
 
 import Alamofire
-import STNetWork
 
 
 @objc public protocol AlamofireWrapperDelegate : class {
@@ -14,39 +13,30 @@ import STNetWork
 }
 
 public class AlamofireWrapper : NSObject {
-    
-    public var delegate:AlamofireWrapperDelegate?
-    
-    weak var request:STNRequest?;
+
+    var request:STNRequest?;
     
     var dataRequest:Alamofire.Request?;
     
     required public init(request: STNRequest) {
         super.init()
         self.request = request
-        self.delegate = (request as! AlamofireWrapperDelegate)
     }
 
     
     public func start() {
         dataRequest = Alamofire.request((self.request?.urlRequest)!).response { (reponse) in
-            self.delegate?.didRecieveData(self.responseConvert(reponse));
+            let stnresponse = STNResponse.init(request: self.request!,
+                                               response: reponse.response,
+                                               data: reponse.data,
+                                               error: reponse.error);
+            (self.request as! AlamofireWrapperDelegate).didRecieveData(stnresponse);
+            self.request = nil;
         }
     }
     
     
     public func cancel() {
         dataRequest?.cancel()
-    }
-}
-
-
-
-// convert
-
-extension AlamofireWrapper {
-    func responseConvert(_ response:DefaultDataResponse) -> STNResponse {
-        let customResponse = STNResponse()
-        return customResponse
     }
 }

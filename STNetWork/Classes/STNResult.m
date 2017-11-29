@@ -15,8 +15,21 @@
 
 @implementation STNResult
 
++ (instancetype)resultWithData:(NSData *)data {
+    STNResult *result = [[STNResult alloc] initWithData:data];
+    return result;
+}
+
+- (instancetype)initWithData:(NSData *)data {
+    self = [super init];
+    if (self) {
+        _rawData = data;
+    }
+    return self;
+}
+
 - (NSString *)rawString {
-    return @"";
+    return [[NSString alloc] initWithData:self.rawData encoding:NSUTF8StringEncoding];
 }
 
 - (id)jsonObject {
