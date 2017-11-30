@@ -43,6 +43,10 @@ NS_ASSUME_NONNULL_BEGIN
               params:(nullable NSDictionary *)params
        completeBlock:(nullable STNRequestComplete)complete;
 
++ (instancetype)post:(NSString *)urlString
+             rawData:(nullable NSData *)data
+       completeBlock:(nullable STNRequestComplete)complete;
+
 - (instancetype)initWithRequest:(NSURLRequest *)request;
 
 - (void)start;

@@ -93,6 +93,21 @@ NSMutableDictionary *globleHTTPHeaders;
     return nrequest;
 }
 
++ (instancetype)post:(NSString *)urlString
+             rawData:(NSData *)data
+       completeBlock:(nullable STNRequestComplete)complete {
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    request.HTTPMethod = @"POST";
+    request.HTTPBody = data;
+    STNRequest *nrequest = [[self alloc] initWithRequest:request];
+    nrequest.completeBlock = ^(STNResponse *response) {
+        complete(response);
+    };
+    [nrequest start];
+    return nrequest;
+}
+
 #pragma mark - Init
 
 - (instancetype)initWithRequest:(NSURLRequest *)request {
