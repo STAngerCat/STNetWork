@@ -69,10 +69,7 @@ NSMutableDictionary *globleHTTPHeaders;
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     request.HTTPMethod = @"GET";
-    STNRequest *nrequest = [[self alloc] initWithRequest:request];
-    nrequest.completeBlock = ^(STNResponse *response) {
-        complete(response);
-    };
+    STNRequest *nrequest = [[self alloc] initWithRequest:request completeBlock:complete];
     [nrequest start];
     return nrequest;
 }
@@ -85,10 +82,7 @@ NSMutableDictionary *globleHTTPHeaders;
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     request.HTTPMethod = @"POST";
-    STNRequest *nrequest = [[self alloc] initWithRequest:request];
-    nrequest.completeBlock = ^(STNResponse *response) {
-        complete(response);
-    };
+    STNRequest *nrequest = [[self alloc] initWithRequest:request completeBlock:complete];
     [nrequest start];
     return nrequest;
 }
@@ -99,18 +93,17 @@ NSMutableDictionary *globleHTTPHeaders;
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     request.HTTPMethod = @"POST";
+    [request setValue:@"application/octet-stream" forHTTPHeaderField:@"Content-Type"];
     request.HTTPBody = data;
-    STNRequest *nrequest = [[self alloc] initWithRequest:request];
-    nrequest.completeBlock = ^(STNResponse *response) {
-        complete(response);
-    };
+    STNRequest *nrequest = [[self alloc] initWithRequest:request completeBlock:complete];
     [nrequest start];
     return nrequest;
 }
 
 #pragma mark - Init
 
-- (instancetype)initWithRequest:(NSURLRequest *)request {
+- (instancetype)initWithRequest:(NSURLRequest *)request
+                  completeBlock:(nullable STNRequestComplete)complete;{
     self = [super init];
     if (self) {
         NSMutableURLRequest *mutableRequest = [request mutableCopy];
@@ -124,6 +117,7 @@ NSMutableDictionary *globleHTTPHeaders;
         _urlRequest = request;
         _method = [self methodFromString:request.HTTPMethod];
         _wrapper = [[AlamofireWrapper alloc] initWithRequest:self];
+        _completeBlock = complete;
     }
     return self;
 }

@@ -47,7 +47,8 @@ NS_ASSUME_NONNULL_BEGIN
              rawData:(nullable NSData *)data
        completeBlock:(nullable STNRequestComplete)complete;
 
-- (instancetype)initWithRequest:(NSURLRequest *)request;
+- (instancetype)initWithRequest:(NSURLRequest *)request
+                  completeBlock:(nullable STNRequestComplete)complete;;
 
 - (void)start;
 - (void)cancel;
